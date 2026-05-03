@@ -4,6 +4,7 @@ import ServicesSection from "./components/ServicesSection";
 import WorkSection from "./components/WorkSection";
 import ProcessSection from "./components/ProcessSection";
 import AboutSection from "./components/AboutSection";
+import ContactSection from "./components/ContactSection";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -607,17 +608,17 @@ export default function Home() {
       <WorkSection />
       <ProcessSection/>
       <AboutSection/>
+      <ContactSection/>
 
-      {[
-        { id: "contact", tag: "Let's Talk", title: "Contact" },
-      ].map((s) => (
+
+      {/* {[].map((s) => (
         <section key={s.id} id={s.id} className="page">
           <div style={{ textAlign: "center" }}>
             <p className="page-tag">{s.tag}</p>
             <h2 className="page-title">{s.title}</h2>
           </div>
         </section>
-      ))}
+      ))} */}
     </>
   );
 }
