@@ -7,6 +7,7 @@ import AboutSection from "./components/AboutSection";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const logoRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const navbarRef = useRef<HTMLElement>(null);
@@ -17,6 +18,11 @@ export default function Home() {
   const closeMenu = () => setMenuOpen(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     const logoEl = logoRef.current;
     const overlay = overlayRef.current;
     const navbar = navbarRef.current;
@@ -151,21 +157,22 @@ export default function Home() {
       timers.forEach(clearTimeout);
       observers.forEach((o) => o.disconnect());
     };
-  }, []);
+  }, [mounted]);
 
   return (
     <>
       {/* ── INTRO OVERLAY ── */}
-      <div id="intro-overlay" ref={overlayRef}>
-        <div id="logo-intro" ref={logoRef}>
+      <div id="intro-overlay" ref={overlayRef} suppressHydrationWarning>
+        <div id="logo-intro" ref={logoRef} suppressHydrationWarning>
           HEXALOGIC
         </div>
       </div>
 
       {/* ── NAVBAR ── */}
-      <nav id="navbar" ref={navbarRef}>
-        <a href="#home" className="nav-logo">
-          Hexalogic
+      <nav id="navbar" ref={navbarRef} suppressHydrationWarning>
+        <a href="#home" className="nav-logo" aria-label="Hexalogic home">
+          <img src="/hexalogic_icon_only.svg" alt="Hexalogic logo"/>
+          <span>HEXALOGIC</span>
         </a>
 
         <div className="nav-pill">
@@ -190,6 +197,7 @@ export default function Home() {
           className={`hamburger${menuOpen ? " open" : ""}`}
           onClick={toggleMenu}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
+          suppressHydrationWarning
         >
           <span />
           <span />
@@ -198,7 +206,7 @@ export default function Home() {
       </nav>
 
       {/* ── MOBILE MENU ── */}
-      <div id="mobile-menu" className={menuOpen ? "open" : ""}>
+      <div id="mobile-menu" className={menuOpen ? "open" : ""} suppressHydrationWarning>
         <button className="menu-close" onClick={closeMenu} aria-label="Close">
           ✕
         </button>

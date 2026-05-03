@@ -86,18 +86,34 @@ body::after {
 
 /* logo — left */
 .nav-logo {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: clamp(0.9rem, 2vw, 1.35rem); font-weight: 700;
-  letter-spacing: 0.14em;
-  background: linear-gradient(135deg, #fff 0%, var(--gold2) 45%, var(--gold) 65%, #fff 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  filter: drop-shadow(0 0 14px rgba(201,168,76,0.45));
+  display: flex; align-items: center;
+  gap: 8px;
+  justify-content: center;
   text-decoration: none; justify-self: start;
-  opacity: 0; transform: translateX(-14px);
-  transition: opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s, filter 0.3s;
+  opacity: 0;
+  transition: opacity 0.7s ease 0.3s, filter 0.3s;
 }
-#navbar.visible .nav-logo { opacity: 1; transform: translateX(0); }
+#navbar.visible .nav-logo { opacity: 1; }
+#navbar.visible .nav-logo span {opacity: 1; }
 .nav-logo:hover { filter: drop-shadow(0 0 24px rgba(201,168,76,0.8)); }
+
+.nav-logo img {
+  display: block;
+  max-height: clamp(2rem, 4vw, 4rem);
+  width: auto;
+}
+
+.nav-logo span {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(0.75rem, 1.4vw, 1.05rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  background: linear-gradient(160deg, #fff 0%, #e2e2e2 38%, var(--gold2) 68%, var(--gold) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  filter: drop-shadow(0 2px 10px rgba(201,168,76,0.3));
+  white-space: nowrap;
+}
 
 /* pill — center */
 .nav-pill {
